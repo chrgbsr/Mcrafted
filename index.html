@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCrafted - Learn what school forgot to teach</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4b2e2e;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fef3c7, #ffe8c7, #fef3c7, #ffe8c7);
+            background-size: 400% 400%;
+            animation: waterFlow 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes waterFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4b2e2e;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #4b2e2e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            color: #4b2e2e;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Section container */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #4b2e2e;
+        }
+
+        .card p {
+            color: #6b4e4e;
+            font-size: 1rem;
+        }
+
+        /* Vision section */
+        .vision {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .vision h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .vision p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #5b3e3e;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #4b2e2e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .copyright {
+            color: #6b4e4e;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Popup styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #4b2e2e;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-close:hover {
+            opacity: 1;
+        }
+
+        .popup h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4b2e2e;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4b2e2e;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid rgba(75, 46, 46, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            color: #4b2e2e;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(75, 46, 46, 0.4);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .popup-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 1rem;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #6b4e4e;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(75, 46, 46, 0.2);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .popup p {
+            text-align: center;
+            color: #6b4e4e;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .vision {
+                padding: 3rem 2rem;
+            }
+
+            .vision h2 {
+                font-size: 2rem;
+            }
+
+            .vision p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .vision {
+                padding: 2rem 1.5rem;
+                margin: 3rem 1rem;
+            }
+
+            .vision h2 {
+                font-size: 1.8rem;
+            }
+
+            .vision p {
+                font-size: 1rem;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Hamburger menu for mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #4b2e2e;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="logo">MindCrafted</div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#learn">Learn</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#parents">Parents</a></li>
+                <li><a href="#signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Learn what school forgot to teach.</h1>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToSection('age-groups')">Start Learning</button>
+            <button class="btn" onclick="scrollToSection('modules')">Explore Topics</button>
+        </div>
+    </section>
+
+    <section id="age-groups">
+        <h2 class="section-title">Choose Your Path</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="card-emoji">👦</span>
+                <h3>Ages 8–12</h3>
+                <p>Curious Explorers</p>
+            </div>
+            <div class="card">
+                <span class="card-emoji">🧑</span>
+                <h3>Ages 13–15</h3>
+                <p>Confident Builders</p>
+            </div>
+            <div class="card">
+                <span class="card-emoji">🧔</span>
+                <h3>Ages 16–19</h3>
+                <p>Future Leaders</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="modules">
+        <h2 class="section-title">Featured Modules</h2>
+        <div class="card-grid">
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">💰</span>
+                <h3>What is Money?</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">🐖</span>
+                <h3>Saving vs Spending</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">💔</span>
+                <h3>Handling Emotions</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">💬</span>
+                <h3>Basic Communication</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">📊</span>
+                <h3>Budgeting Basics</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">🎤</span>
+                <h3>Public Speaking</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">🧠</span>
+                <h3>Mental Health Check-ins</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">📋</span>
+                <h3>Tax</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">🛡️</span>
+                <h3>Insurance</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">📈</span>
+                <h3>Investing</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">🎨</span>
+                <h3>Monetizing Hobbies</h3>
+            </div>
+            <div class="card" onclick="showLoginPopup()">
+                <span class="card-emoji">❤️</span>
+                <h3>How to Respect Relationship</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision">
+        <h2>Our Vision</h2>
+        <p>At MindCrafted, we believe that education should prepare you for life—not just exams. We teach what truly matters: how to earn, how to speak, how to heal, how to build, and how to love. Through real-life scenarios, playful learning, and emotional wisdom, we help young minds grow into confident, kind, and capable humans. This is not just a platform—it's a movement to craft minds that thrive in the real world.</p>
+    </section>
+
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+        </ul>
+        <p class="copyright">© 2025 MindCrafted by ChrgBsr.</p>
+	<p class="copyright1"> Crafting minds for the real world.</p>
+    </footer>
+
+    <!-- Login Popup -->
+    <div class="popup-overlay" id="loginPopup">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup('loginPopup')">&times;</button>
+            <h2>Welcome Back</h2>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="popup-buttons">
+                    <button class="btn btn-primary btn-full">Sign In</button>
+                    <div class="divider">or</div>
+                    <button class="btn btn-full" onclick="showRegisterPopup()">Create New Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Coming Soon Popup -->
+    <div class="popup-overlay" id="comingSoonPopup">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup('comingSoonPopup')">&times;</button>
+            <h2>Coming Soon! 🚀</h2>
+            <p>We're crafting something special for you. Registration will be available very soon. Stay tuned!</p>
+            <div class="popup-buttons">
+                <button class="btn btn-primary btn-full" onclick="closePopup('comingSoonPopup')">Got It</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Popup functions
+        function showLoginPopup() {
+            document.getElementById('loginPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showRegisterPopup() {
+            closePopup('loginPopup');
+            setTimeout(() => {
+                document.getElementById('comingSoonPopup').classList.add('active');
+            }, 300);
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup when clicking outside
+        document.querySelectorAll('.popup-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    closePopup(overlay.id);
+                }
+            });
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.popup-overlay.active').forEach(popup => {
+                    closePopup(popup.id);
+                });
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
